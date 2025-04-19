@@ -1,0 +1,701 @@
+<div class="bk-container-98">
+    <!-- Language Switcher -->
+    <div class="bk-lang-switcher-98">
+        <div class="bk-lang-btn-98 bk-so-98 bk-active-98" onclick="bkSwitchLanguage('so')">
+            <img src="https://flagcdn.com/w20/so.png" alt="Somali"> SO
+        </div>
+        <div class="bk-lang-btn-98 bk-en-98" onclick="bkSwitchLanguage('en')">
+            <img src="https://flagcdn.com/w20/gb.png" alt="English"> EN
+        </div>
+    </div>
+
+    <!-- Header Area -->
+    <div class="bk-header-area-98">
+        <div class="bk-header-content-98">
+            <div class="bk-logo-98">
+                <i class="fas fa-book-open"></i>
+                <span class="bk-logo-text-98">Kutubta Bilaashka ah</span>
+            </div>
+            <div class="bk-nav-98">
+                <div class="bk-nav-list-98">
+                    <div class="bk-nav-item-98"><a href="#">Bogga Hore</a></div>
+                    <div class="bk-nav-item-98"><a href="#">Qaybaha</a></div>
+                    <div class="bk-nav-item-98"><a href="#">Kuwa Caansan</a></div>
+                    <div class="bk-nav-item-98"><a href="#">Kuwa Cusub</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <div class="bk-page-header-98">
+        <div class="bk-container-98">
+            <h1 class="bk-main-title-98">Kutubta Bilaashka ah ee aad download garayn karto</h1>
+            <p class="bk-subtitle-98">Hel oo download garo booqashada keliya kutub badan oo bilaash ah. Aan lagu baahnayn inaad iska diiwaan geliso!</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="bk-container-98">
+        <!-- Search and Filter -->
+        <div class="bk-search-filter-98">
+            <div class="bk-search-bar-98">
+                <input type="text" id="bkSearchInput-98" placeholder="Raadi kutubta, qoraayaasha, ama noocyada...">
+                <div class="bk-search-btn-98" onclick="bkSearchBooks()"><i class="fas fa-search"></i> Raadi</div>
+            </div>
+            
+            <div class="bk-category-drop-98">
+                <select id="bkCategoryFilter-98" onchange="bkFilterBooks()">
+                    <option value="all">Dhammaan Qaybaha</option>
+                    <option value="fiction">Sheeko</option>
+                    <option value="non-fiction">Aan Sheeko Aheyn</option>
+                    <option value="science">Saynis</option>
+                    <option value="history">Taariikh</option>
+                    <option value="biography">Taariikh Nololeed</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Ad Banner -->
+        <div class="bk-ad-banner-98">
+            <p class="bk-ad-label-98">Xayeysiis</p>
+            <div class="bk-ad-content-98">
+                <!-- Your AdSense Code Here -->
+                Xayeysiiskaaga AdSense (728x90)
+            </div>
+        </div>
+        
+        <!-- Books Container -->
+        <div class="bk-books-container-98" id="bkBooksContainer-98">
+            <!-- Books will be loaded here by JavaScript -->
+        </div>
+        
+        <!-- Pagination -->
+        <div class="bk-pagination-98">
+            <div class="bk-page-btn-98 bk-active-98" onclick="bkChangePage(1)">1</div>
+            <div class="bk-page-btn-98" onclick="bkChangePage(2)">2</div>
+            <div class="bk-page-btn-98" onclick="bkChangePage(3)">3</div>
+            <div class="bk-page-btn-98 bk-next-btn-98" onclick="bkNextPage()">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Unique CSS classes to avoid Blogger conflicts */
+.bk-container-98 {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.bk-header-area-98 {
+    background: linear-gradient(135deg, #4361ee, #3f37c9);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.bk-header-content-98 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bk-logo-98 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+.bk-logo-98 i {
+    margin-right: 10px;
+    font-size: 1.8rem;
+}
+
+.bk-nav-list-98 {
+    display: flex;
+    list-style: none;
+}
+
+.bk-nav-item-98 {
+    margin-left: 1.5rem;
+}
+
+.bk-nav-item-98 a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    font-size: 0.95rem;
+}
+
+.bk-nav-item-98 a:hover::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: white;
+    bottom: -5px;
+    left: 0;
+}
+
+.bk-page-header-98 {
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+    padding: 2.5rem 0;
+    margin-bottom: 1.5rem;
+}
+
+.bk-main-title-98 {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, #4361ee, #4895ef);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.bk-subtitle-98 {
+    font-size: 1rem;
+    color: #6c757d;
+    max-width: 700px;
+}
+
+.bk-search-filter-98 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.bk-search-bar-98 {
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+}
+
+.bk-search-bar-98 input {
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.bk-search-btn-98 {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background: linear-gradient(to right, #4361ee, #4895ef);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.bk-category-drop-98 {
+    position: relative;
+    min-width: 220px;
+    z-index: 10;
+}
+
+.bk-category-drop-98 select {
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+    padding-right: 2.5rem;
+    border-radius: 50px;
+    border: 1px solid #e0e0e0;
+    background: white;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+    font-size: 0.95rem;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bk-ad-banner-98 {
+    background: white;
+    padding: 1rem;
+    margin: 2rem auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    text-align: center;
+    max-width: 1000px;
+}
+
+.bk-ad-label-98 {
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.bk-ad-content-98 {
+    height: 90px;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.bk-books-container-98 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin: 1.5rem 0;
+}
+
+.bk-book-row-98 {
+    display: flex;
+    width: 100%;
+    gap: 2rem;
+}
+
+.bk-book-card-98 {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    width: calc(50% - 1rem);
+    display: flex;
+    flex-direction: column;
+}
+
+.bk-book-cover-98 {
+    height: 280px;
+    background: #eee;
+    position: relative;
+    overflow: hidden;
+}
+
+.bk-free-badge-98 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #4895ef;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.bk-book-info-98 {
+    padding: 1.2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.bk-book-title-98 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #212529;
+}
+
+.bk-book-author-98 {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+}
+
+.bk-book-desc-98 {
+    color: #6c757d;
+    font-size: 0.85rem;
+    margin-bottom: 1.2rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bk-download-btn-98 {
+    display: block;
+    width: 100%;
+    padding: 0.7rem;
+    background: linear-gradient(to right, #4361ee, #4895ef);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    margin-top: auto;
+}
+
+.bk-pagination-98 {
+    display: flex;
+    justify-content: center;
+    margin: 3rem 0;
+    gap: 0.5rem;
+}
+
+.bk-page-btn-98 {
+    padding: 0.6rem 1rem;
+    min-width: 40px;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bk-active-98 {
+    background: #4361ee;
+    color: white;
+    border-color: #4361ee;
+}
+
+.bk-next-btn-98 {
+    padding: 0.6rem 1.2rem;
+}
+
+.bk-lang-switcher-98 {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    background: white;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    z-index: 99;
+}
+
+.bk-lang-btn-98 {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.bk-lang-btn-98 img {
+    width: 20px;
+    height: auto;
+    border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+    .bk-header-content-98 {
+        flex-direction: column;
+    }
+    
+    .bk-nav-list-98 {
+        margin-top: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .bk-nav-item-98 {
+        margin-left: 0.8rem;
+        margin-right: 0.8rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .bk-main-title-98 {
+        font-size: 1.8rem;
+    }
+    
+    .bk-book-row-98 {
+        flex-direction: column;
+    }
+    
+    .bk-book-card-98 {
+        width: 100%;
+    }
+    
+    .bk-search-filter-98 {
+        flex-direction: column;
+    }
+    
+    .bk-search-bar-98, .bk-category-drop-98 {
+        width: 100%;
+    }
+}
+</style>
+
+<script>
+// Book data - replace with your actual books
+const bkBooksData = [
+    {
+        title: "The Silent Patient",
+        author: "By Alex Michaelides",
+        description: "Sheeko xiiso leh oo ku saabsan naag dabeysan oo lagu eedeeyay dilkeedii. Waa buugga ugu fiican ee 2019.",
+        image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+        category: "fiction"
+    },
+    {
+        title: "Atomic Habits",
+        author: "By James Clear",
+        description: "Habka lagu dhiso dabeecado cusub oo wanaagsan. Buuggan wuxuu ku tusayaa sida aad ugu wanaajin karto noloshaada maalinle.",
+        image: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+        category: "non-fiction"
+    },
+    {
+        title: "To Kill a Mockingbird",
+        author: "By Harper Lee",
+        description: "Sheeko taariikhi ah oo ku saabsan caddaalad darrada iyo nolosha Maraykanka koonfureed. Waa mid ka mid ah buugaagga ugu wanaagsan abid.",
+        image: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+        category: "fiction"
+    },
+    {
+        title: "The Psychology of Money",
+        author: "By Morgan Housel",
+        description: "Buuggan wuxuu ku saabsan yahay sida aad u fahanto dhaqaalaha iyo sida lacagta loo maamulo si khaldan.",
+        image: "https://images.unsplash.com/photo-1531346878377-a5be20888e57?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+        category: "non-fiction"
+    },
+    {
+        title: "1984",
+        author: "By George Orwell",
+        description: "Sheeko dystopian oo ku saabsan mustaqbal ay dawladda ay gacanta ku hayso dhammaan waxa qofku u malayn karo.",
+        image: "https://images.unsplash.com/photo-1600189261867-30e5ffe7b8da?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+        category: "fiction"
+    },
+    {
+        title: "The Great Gatsby",
+        author: "By F. Scott Fitzgerald",
+        description: "Sheeko jacayl iyo murugo oo ku saabsan nolosha Maraykanka 1920s. Waa mid ka mid ah buugaagga ugu caansan adduunka.",
+        image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+        category: "fiction"
+    }
+];
+
+// Initialize books on page load
+document.addEventListener('DOMContentLoaded', function() {
+    bkRenderBooks();
+    bkShowPage(1);
+});
+
+// Render all books
+function bkRenderBooks() {
+    const container = document.getElementById('bkBooksContainer-98');
+    let html = '';
+    
+    for (let i = 0; i < bkBooksData.length; i += 2) {
+        html += `<div class="bk-book-row-98">`;
+        
+        // First book in row
+        if (bkBooksData[i]) {
+            html += bkCreateBookCard(bkBooksData[i]);
+        }
+        
+        // Second book in row
+        if (bkBooksData[i+1]) {
+            html += bkCreateBookCard(bkBooksData[i+1]);
+        }
+        
+        html += `</div>`;
+    }
+    
+    container.innerHTML = html;
+}
+
+// Create book card HTML
+function bkCreateBookCard(book) {
+    return `
+        <div class="bk-book-card-98" data-category="${book.category}">
+            <div class="bk-book-cover-98">
+                <img src="${book.image}" alt="${book.title}">
+                <span class="bk-free-badge-98">BILAASH</span>
+            </div>
+            <div class="bk-book-info-98">
+                <h3 class="bk-book-title-98">${book.title}</h3>
+                <p class="bk-book-author-98">${book.author}</p>
+                <p class="bk-book-desc-98">${book.description}</p>
+                <a href="#" class="bk-download-btn-98"><i class="fas fa-download"></i> Download</a>
+            </div>
+        </div>
+    `;
+}
+
+// Pagination
+let bkCurrentPage = 1;
+const bkBooksPerPage = 6;
+
+function bkShowPage(page) {
+    const startIndex = (page - 1) * bkBooksPerPage;
+    const endIndex = startIndex + bkBooksPerPage;
+    const books = document.querySelectorAll('.bk-book-card-98');
+    
+    books.forEach((book, index) => {
+        if (index >= startIndex && index < endIndex) {
+            book.style.display = 'flex';
+            book.parentElement.style.display = 'flex';
+        } else {
+            book.style.display = 'none';
+            const row = book.parentElement;
+            const visibleBooks = row.querySelectorAll('.bk-book-card-98[style*="display: flex"]');
+            if (visibleBooks.length === 0) {
+                row.style.display = 'none';
+            }
+        }
+    });
+    
+    // Update active page button
+    document.querySelectorAll('.bk-page-btn-98').forEach(btn => {
+        btn.classList.remove('bk-active-98');
+        if (btn.textContent == page) {
+            btn.classList.add('bk-active-98');
+        }
+    });
+    
+    bkCurrentPage = page;
+}
+
+function bkChangePage(page) {
+    bkShowPage(page);
+}
+
+function bkNextPage() {
+    const totalPages = Math.ceil(bkBooksData.length / bkBooksPerPage);
+    if (bkCurrentPage < totalPages) {
+        bkShowPage(bkCurrentPage + 1);
+    }
+}
+
+// Search functionality
+function bkSearchBooks() {
+    const searchTerm = document.getElementById('bkSearchInput-98').value.toLowerCase();
+    const books = document.querySelectorAll('.bk-book-card-98');
+    
+    books.forEach(book => {
+        const title = book.querySelector('.bk-book-title-98').textContent.toLowerCase();
+        const author = book.querySelector('.bk-book-author-98').textContent.toLowerCase();
+        const description = book.querySelector('.bk-book-desc-98').textContent.toLowerCase();
+        
+        if (title.includes(searchTerm) || author.includes(searchTerm) || description.includes(searchTerm)) {
+            book.style.display = 'flex';
+        } else {
+            book.style.display = 'none';
+        }
+    });
+    
+    // Hide empty rows
+    document.querySelectorAll('.bk-book-row-98').forEach(row => {
+        const visibleBooks = row.querySelectorAll('.bk-book-card-98[style*="display: flex"]');
+        if (visibleBooks.length === 0) {
+            row.style.display = 'none';
+        } else {
+            row.style.display = 'flex';
+        }
+    });
+    
+    bkShowPage(1);
+}
+
+// Category filter
+function bkFilterBooks() {
+    const category = document.getElementById('bkCategoryFilter-98').value;
+    const books = document.querySelectorAll('.bk-book-card-98');
+    
+    books.forEach(book => {
+        if (category === 'all' || book.dataset.category === category) {
+            book.style.display = 'flex';
+        } else {
+            book.style.display = 'none';
+        }
+    });
+    
+    // Hide empty rows
+    document.querySelectorAll('.bk-book-row-98').forEach(row => {
+        const visibleBooks = row.querySelectorAll('.bk-book-card-98[style*="display: flex"]');
+        if (visibleBooks.length === 0) {
+            row.style.display = 'none';
+        } else {
+            row.style.display = 'flex';
+        }
+    });
+    
+    bkShowPage(1);
+}
+
+// Language switch
+function bkSwitchLanguage(lang) {
+    const elements = {
+        title: {
+            so: "Kutubta Bilaashka ah - Download eBooks Free",
+            en: "Free Books - Download eBooks Free"
+        },
+        logo: {
+            so: "Kutubta Bilaashka ah",
+            en: "FreeBook Hub"
+        },
+        header: {
+            so: "Kutubta Bilaashka ah ee aad download garayn karto",
+            en: "Free Books Available for Download"
+        },
+        subheader: {
+            so: "Hel oo download garo booqashada keliya kutub badan oo bilaash ah. Aan lagu baahnayn inaad iska diiwaan geliso!",
+            en: "Find and download with just one click thousands of free books. No registration required!"
+        },
+        searchPlaceholder: {
+            so: "Raadi kutubta, qoraayaasha, ama noocyada...",
+            en: "Search for books, authors, or genres..."
+        },
+        searchButton: {
+            so: "Raadi",
+            en: "Search"
+        },
+        adText: {
+            so: "Xayeysiis",
+            en: "Advertisement"
+        },
+        navItems: [
+            { so: "Bogga Hore", en: "Home" },
+            { so: "Qaybaha", en: "Categories" },
+            { so: "Kuwa Caansan", en: "Popular" },
+            { so: "Kuwa Cusub", en: "New Releases" }
+        ]
+    };
+
+    // Update all elements
+    document.title = elements.title[lang];
+    document.querySelector('.bk-logo-text-98').textContent = elements.logo[lang];
+    document.querySelector('.bk-main-title-98').textContent = elements.header[lang];
+    document.querySelector('.bk-subtitle-98').textContent = elements.subheader[lang];
+    document.getElementById('bkSearchInput-98').placeholder = elements.searchPlaceholder[lang];
+    document.querySelector('.bk-search-btn-98').innerHTML = `<i class="fas fa-search"></i> ${elements.searchButton[lang]}`;
+    document.querySelector('.bk-ad-label-98').textContent = elements.adText[lang];
+    
+    // Update navigation
+    document.querySelectorAll('.bk-nav-item-98 a').forEach((link, index) => {
+        link.textContent = elements.navItems[index][lang];
+    });
+    
+    // Update active button
+    document.querySelectorAll('.bk-lang-btn-98').forEach(btn => {
+        btn.classList.remove('bk-active-98');
+    });
+    document.querySelector(`.bk-lang-btn-98.bk-${lang}-98`).classList.add('bk-active-98');
+}
+</script>
